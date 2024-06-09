@@ -6,16 +6,17 @@ import {
 } from "react-router-dom";
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import List from './List';
+import App from './App';
+import FormPatient from './FormPatient';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>
+    element: <App></App>,
   },
   {
-    path: "/citas-agendadas",
-    element: <List></List>
+    path: "/new-patient",
+    element: <FormPatient></FormPatient>
   },
 ]);
 
