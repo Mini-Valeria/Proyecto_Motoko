@@ -10,7 +10,9 @@ const FormPatient = (
     nNombre = null,
     nDescripcion = null,
     nEstadia = null,
-    isEditable = null
+    isEditable = null,
+    mostp = null,
+    setShow = null,
   }
 ) => {
     const [nombre, setName] = useState (nNombre ? nNombre:"");
@@ -66,7 +68,10 @@ const FormPatient = (
       title: "¡Datos actualizados exitosamente!",
       showConfirmButton: false,
       timer: 1500
-    }).then(() => navigate('/'))
+    }).then(() =>{
+      setShow(false);
+      mostp();
+    })
  }).catch((err) => {
   Swal.fire({
     icon: "error",

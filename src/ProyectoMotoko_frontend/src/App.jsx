@@ -9,6 +9,7 @@ function App() {
   const [pacientes, setpatients] = useState([]);
   const [paciente, setpatient] = useState({});
   const [show, setShow] = useState(false);
+  
   const navigate = useNavigate();
   useEffect (() => {
     mostp();
@@ -31,7 +32,15 @@ function App() {
      Swal.close();
      setShow(true);
    });
-}
+  }
+
+  function deletePatient(id) {
+    Swal.fire("Eliminando, por favor espere...");
+    Swal.showLoading();
+    ProyectoMotoko_backend.deletePatient(BigInt(id)).then(() => {
+     mostp();
+   });
+  }
 
   return (
     <Container fluid>
@@ -71,7 +80,7 @@ function App() {
                                     <Button variant="dark" onClick={()=> mostPatient(Number(pacientes.id))}>Editar</Button>
                                   </Col>
                                   <Col>
-                                    <Button variant="danger">Eliminar</Button>
+                                    <Button variant="danger" onClick={()=> deletePatient(Number(pacientes.id))}>Eliminar</Button>
                                   </Col>
                                 </Row>
                               </td>
@@ -95,6 +104,8 @@ function App() {
               nDescripcion={paciente.desc}
               nEstadia={Number(paciente.dias)}
               isEditable={true}
+              setShow={setShow}
+              mostp={mostp}
             />
           </Modal.Body>
         </Modal>

@@ -54,4 +54,14 @@ public func actp (id : Nat, nombre : Text, desc : Text, dias : Nat) : async Bool
   };
 };
 
+  public func deletePatient(id : Nat) : async Bool {
+    let paciente = Array.find<Paciente> (pacientes, func(p) { p.id == id });
+    if (paciente != null) {
+      pacientes := Array.filter<Paciente> (pacientes, func(p) {p.id != id});
+      return true;
+    } else {
+        return false;
+      };
+  };
+
 };
